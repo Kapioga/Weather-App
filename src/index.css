@@ -5,6 +5,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  text-align: center;
 }
 
 body{
@@ -79,19 +80,29 @@ main{
   background-color: rgba(255,255,255,0.75);
 }
 
-.location-box{
-
+.location-box .location{
+  color: white;
+  text-shadow: 3px 3px rgba(50,50,70,0.5);
 }
 
 .location-box .date{
   font-size: 24px;
   padding: 10px;
+  font-style: italic;
 }
 
 .weather-box{
   padding-top: 40px;
+  text-shadow: 3px 6px rgba(50,50,70,0.5);
 }
 
 .weather-box .weather{
   font-size: 32px;
+}
+
+.weather-box .temp{
+  position: relative;
+  display: inline-block;
+  margin: 3px auto;
+  font-weight: 500;
 }
