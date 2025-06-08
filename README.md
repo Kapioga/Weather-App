@@ -1,6 +1,6 @@
-# Weather App<img src='https://veekun.com/dex/media/pokemon/global-link/180.png' height=50px/></a>
+# Weather App <img src='https://veekun.com/dex/media/pokemon/global-link/180.png' height=50px/></a>
 
-A React App that displays the weather of your next destination as well as your local time. This app was inspired by the Google Pixel homescreen. [OpenWeather API](https://openweathermap.org/)Enjoy!
+A React App that displays the weather of your next destination as well as your local time. This app was inspired by the Google Pixel homescreen. [OpenWeather API](https://openweathermap.org/) Enjoy!
 
 ## <img src='https://veekun.com/dex/media/pokemon/icons/179.png' height=35px> Installation
 
