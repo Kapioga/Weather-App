@@ -16,7 +16,7 @@ $ npm stop
 
 ## Screenshots
 
-![alt text] (URL )
+![alt text](https://github.com/Kapioga/Weather-App/blob/master/src/assets/Sunrise%20Time.png)
 
 ## Photo Credits
 
