@@ -3,7 +3,7 @@ import './App.css';
 
 const api = {
   key: "7c1bb57b1c8a76bab5dc7c82c2c517be",
-  base: "https://api.openweathermap.org/data"
+  base: "https://api.openweathermap.org/data/2.5/"
 }
 
 function App() {
@@ -14,11 +14,20 @@ function App() {
 
   const search = evt => {
     if (evt.key === "Enter") {
-      fetch(`${api.base}weather?q=${query} &units=metric&APPID=${api.key}`)
+      fetch(`${api.base}weather?q=${query}&units=metric&appid=${api.key}`)
         .then(res => res.json())
-        .then(result => setWeather(result));
+        .then(result => {
+          setQuery('');
+          setWeather(result);
+          console.log(result);
+        });
     }
   }
+
+  // Date and Clock 
+  const date = new Date();
+  let ampm = (date.getHours() >=12) ? "PM" : "AM" ;
+  const clockTime = date.getHours() + ":" + date.getMinutes();
 
   // Date Handler 
   const dateBuilder = (d) => {
@@ -34,26 +43,49 @@ function App() {
 
   }
   return (
-    <div className="App">
+    <div className={
+      (typeof weather.main != "undefined") ? 
+      ((weather.main.temp > 16) ? 'App warm' : 'App') 
+      : 'App'
+      }>
+
       <main>
 
         {/* Search Box  */}
         <div className='search-box'>
-          <input type='text' className='search-Bar' placeholder='Where to next? ...'></input>
+          <input type='text' 
+          className='search-Bar' 
+          placeholder='Where to next? ...'
+          onChange={e => setQuery(e.target.value)}
+          value = {query}
+          onKeyDown={search}
+          ></input>
         </div>
 
-        {/* Location and Date  */}
-        <div className='location-box'> 
-          <div className='location'> Naples, Italy</div>
-          <div className='date'>{dateBuilder(new Date())}</div>
-        </div>
+        {/* Weather Components  */}
+        {(typeof weather.main != "undefined") ? (
+        <div>
 
-        {/* Weather temperature  */}
-        <div className='weather-box'>
-          <div className='temp'> 85°C</div>
-          <div className='weather'> Partly Cloud</div>
-        </div>
+          {/* Weather Location and Date  */}
+          <div className="location-box">
+            <div className="location">{weather.name}, {weather.sys.country}</div>
+            <div className="date">{dateBuilder(new Date())}</div>
+          </div>
+          
+          {/* Weather Readings and Type */}
+          <div className="weather-box">
+            <div className="temp">
+              {Math.round(weather.main.temp)}°c | {Math.round((weather.main.temp)*9/5)+32}°f
+            </div>
+          <div className="weather">{weather.weather[0].main}</div>
 
+          </div>
+        </div>
+        ) : ('')}
+
+        <div className='clock'>
+          <h1> {clockTime}</h1> <h2 className='daytime'>{ampm}</h2>
+        </div>
       </main>
     </div>
   );
